@@ -38,7 +38,7 @@ $consulta->execute([':id_usuario' => $id_usuario]);
         </h3>
 
         <p>
-            <a href="cerrarsesion.php">Cerrar Sesion</a>
+            <a href="cerrar_sesion.php">Cerrar Sesion</a>
         </p>
 
         <hr>
