@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `incidencias_db`
 --
+CREATE DATABASE IF NOT EXISTS `incidencias_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `incidencias_db`;
 
 -- --------------------------------------------------------
 
@@ -90,6 +92,32 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `incidencia`
   ADD CONSTRAINT `incidencia_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Volcado de datos para la tabla `usuario`
+-- (id_usuario se genera automáticamente)
+--
+
+INSERT INTO `usuario` (`nombre`, `clave`) VALUES
+('oscar', '123'),
+('maria', '456');
+
+--
+-- Volcado de datos para la tabla `incidencia`
+-- (id_incidencia se genera automáticamente; id_usuario se obtiene por el nombre del usuario)
+--
+
+INSERT INTO `incidencia` (`id_usuario`, `nombre`, `descripcion`, `prioridad`) VALUES
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'oscar'), 'Impresora no imprime', 'La impresora del área de contabilidad no responde al enviar documentos.', 'media'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'oscar'), 'Sin acceso a internet', 'Los equipos del segundo piso no tienen conexión a internet desde la mañana.', 'alta'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'oscar'), 'Mouse dañado', 'El mouse del equipo de recepción no funciona correctamente.', 'baja'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'oscar'), 'Correo no sincroniza', 'El cliente de correo no descarga los mensajes nuevos.', 'media'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'oscar'), 'Servidor de archivos caído', 'No se puede acceder a la carpeta compartida del servidor.', 'alta'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'maria'), 'Pantalla parpadea', 'El monitor del equipo de ventas parpadea constantemente.', 'baja'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'maria'), 'Olvido de contraseña', 'Un usuario no puede ingresar al sistema contable por olvido de contraseña.', 'media'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'maria'), 'Virus detectado', 'El antivirus reporta una amenaza en el equipo de gerencia.', 'alta'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'maria'), 'Teclado sin respuesta', 'Algunas teclas del teclado de bodega no funcionan.', 'baja'),
+((SELECT `id_usuario` FROM `usuario` WHERE `nombre` = 'maria'), 'Sistema de facturación lento', 'El sistema de facturación tarda varios minutos en generar facturas.', 'alta');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

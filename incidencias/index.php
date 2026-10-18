@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
 
         # Verificar usuario y contraseña
-        if ($usuario && password_verify($clave, $usuario['clave'])) {
+        if ($usuario && $clave === $usuario['clave']) {
 
             # Iniciar la sesión del usuario autenticado
             session_regenerate_id(true);
