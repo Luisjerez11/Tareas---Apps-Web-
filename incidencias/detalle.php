@@ -49,6 +49,17 @@ if (!$incidencia) {
         <h1>Sistema de Tickets de Incidencias</h1>
 
         <h2>Detalle de la Incidencia</h2>
+        
+        <h3>
+            Bienvenido <?php echo htmlspecialchars($_SESSION['nombre']); ?>
+        </h3>
+
+        <p>
+            <a href="cerrar_sesion.php">Cerrar Sesion</a>
+        </p>
+
+        <hr>
+
 
         <?php if ($incidencia) { ?>
 

@@ -18,8 +18,17 @@ try {
     );
 
 } catch (PDOException $e) {
+
+    # Si el usuario está autenticado, mostrar error 500
+    if (isset($_SESSION['id_usuario'])) {
+        header("Location: 500.php");
+        exit;
+    }
+
+    # Error de conexión antes de iniciar sesión
     http_response_code(500);
     exit("Error de conexión con la base de datos.");
 }
+
 
 ?>
