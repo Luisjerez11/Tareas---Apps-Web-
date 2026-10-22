@@ -1,5 +1,4 @@
 <?php
-
 $servidor = "localhost";
 $usuario = "root";
 $clave = "";
@@ -29,6 +28,4 @@ try {
     http_response_code(500);
     exit("Error de conexión con la base de datos.");
 }
-
-
 ?>

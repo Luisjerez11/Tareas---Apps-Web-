@@ -1,4 +1,3 @@
-
 <?php
 
 # Iniciar o recuperar la sesión
